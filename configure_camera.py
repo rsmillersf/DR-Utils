@@ -1,5 +1,5 @@
 """
-This script captures images from a camera and uses them to calibrate the camera.
+This script captures images from a remote camera and uses them to calibrate the camera.
 The calibration parameters are saved to a file named 'calibration.npz'.
 
 Instructions:

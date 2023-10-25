@@ -12,7 +12,7 @@ for i in range(num_images):
     image_name = f"image_{i+1}.jpg"
     
     # Capture the image and save it in the current directory
-    camera.capture(image_name)
+    camera.capture_image(image_name)
     print(f"Captured {image_name}")
     
     # Freeze effect: Show the captured image for 0.5 seconds

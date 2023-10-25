@@ -1,14 +1,14 @@
 # capturer.py
 
 import zmq
-import picamera2
+import picamera
 import io
 
 context = zmq.Context()
 socket = context.socket(zmq.REP) # REP socket type for replying to requests
 socket.bind("tcp://*:5555") # Bind to a port
 
-with picamera2.PiCamera2() as camera:
+with picamera.PiCamera() as camera:
     while True:
         # Wait for request from client
         message = socket.recv_string()
@@ -21,3 +21,4 @@ with picamera2.PiCamera2() as camera:
             
             # Send the image
             socket.send(image_stream.read())
+

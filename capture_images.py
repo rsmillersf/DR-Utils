@@ -1,4 +1,4 @@
-import picamera2 as PiCamera2
+import picamera2
 import time
 
 # Setup
@@ -6,7 +6,7 @@ num_images = 20
 interval_seconds = 5.5  # Account for the 0.5s freeze effect
 
 # Capture images
-camera = PiCamera2()
+camera = picamera2.PiCamera2()
 
 for i in range(num_images):
     image_name = f"image_{i+1}.jpg"

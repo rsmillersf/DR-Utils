@@ -8,7 +8,7 @@ context = zmq.Context()
 socket = context.socket(zmq.REP) # REP socket type for replying to requests
 socket.bind("tcp://*:5555") # Bind to a port
 
-with picamera2.PiCamera() as camera:
+with picamera2.PiCamera2() as camera:
     while True:
         # Wait for request from client
         message = socket.recv_string()

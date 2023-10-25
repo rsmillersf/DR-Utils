@@ -1,5 +1,6 @@
 # Import necessary libraries
 import zmq
+import io
 from picamera2 import PiCamera2
 
 # Set up ZMQ REP socket
@@ -15,11 +16,15 @@ while True:
     # Wait for a request from the host
     message = socket.recv()
 
-    # Capture an image from the camera
-    camera.capture('/tmp/image.jpg')
+    # Check if the message is a request for an image
+    if message == b"request image":
+        # Capture an image from the camera
+        image_stream = io.BytesIO()
+        camera.capture(image_stream, format='jpeg')
 
-    # Send the image to the host
-    with open('/tmp/image.jpg', 'rb') as f:
-        image_data = f.read()
-        socket.send(image_data)
+        # Serialize the image and send it to the host
+        socket.send(image_stream.getvalue())
+    else:
+        # If the message is not a request for an image, send an error message
+        socket.send(b"Invalid request")
 
